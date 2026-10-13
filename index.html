@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhellskieee Portfolio</title>
+  <meta name="description" content="Dhellmar Feliciano Mahilum (Dhellskieee), Computer Science student. Games, websites and software, all connected to GitHub.">
+  <meta name="theme-color" content="#030403">
+
+  <!--
+    Paano i-run:
+    1. Nasa IISANG folder dapat ang index.html, style.css, script.js at ang assets/ folder
+    2. Buksan ang index.html sa browser, o sa VS Code: right-click > "Open with Live Server"
+  -->
+
+  <!-- Fonts: Schibsted Grotesk (text), Instrument Serif (italic accent), JetBrains Mono (code/data) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+
+  <!-- CSS file (same folder) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== Boot loader ===== -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot__ring" id="bootRing">
+      <svg viewBox="0 0 64 64">
+        <circle class="boot__track" cx="32" cy="32" r="28"></circle>
+        <circle class="boot__bar" id="bootBar" cx="32" cy="32" r="28"></circle>
+      </svg>
+      <span class="boot__num" id="bootNum">0</span>
+    </div>
+    <ol class="boot__log mono" id="bootLog">
+      <li>[ok] booting dhellskieee.dev</li>
+      <li>[ok] mounting ~/projects (24)</li>
+      <li>[ok] linking github.com/Dhellss</li>
+    </ol>
+  </div>
+
+  <!-- Animated background: particle network + light stream (script.js) -->
+  <canvas class="bg" id="bg" aria-hidden="true"></canvas>
+  <div class="spot" id="spot" aria-hidden="true"></div>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav" id="nav">
+    <a class="brand" href="#home" aria-label="Dhellskieee, back to top">
+      <span class="brand__mark" id="brandMark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2"></circle>
+          <circle cx="12" cy="12" r="2.6" fill="currentColor"></circle>
+        </svg>
+      </span>
+      <span class="brand__name">Dhellskieee</span>
+      <span class="brand__tag">/dev</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#projects" data-nav="projects">Projects</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+
+    <div class="nav__right">
+      <span class="pill"><i class="dot"></i>open to internships</span>
+      <a class="btn btn--ghost btn--sm" href="https://github.com/Dhellss" target="_blank" rel="noopener">
+        GitHub
+        <svg class="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 13.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5.5"></path></svg>
+      </a>
+    </div>
+    <span class="nav__progress" id="navProgress" aria-hidden="true"></span>
+  </header>
+
+  <main>
+
+    <!-- ===== HOME ===== -->
+    <section class="hero" id="home" aria-labelledby="heroTitle">
+      <div class="hero__copy">
+        <p class="chip reveal d1"><i class="dot"></i><span class="mono">online / computer science student</span></p>
+        <h1 class="hero__title reveal d2" id="heroTitle">
+          <span class="hero__name" id="heroName" data-text="Dhellskieee">Dhellskieee</span>
+          <em>games, web &amp; software.</em>
+        </h1>
+        <p class="hero__lead reveal d3">Hi, I'm <strong>Dhellmar Feliciano Mahilum</strong>, a Computer Science student who builds games for the browser, Android and PC, plus websites and desktop software.</p>
+        <div class="hero__actions reveal d4">
+          <a class="btn btn--lime magnetic" href="#projects">See my projects</a>
+          <a class="btn btn--ghost magnetic" href="#contact">Get in touch</a>
+        </div>
+        <p class="hero__meta reveal d5"><i class="sdot"></i><span id="latestPush">Latest push: dash-break on Oct 8, 2026</span></p>
+      </div>
+
+      <div class="hero__stage reveal-stage">
+        <div class="window term" id="heroTerm">
+          <div class="window__bar">
+            <div class="window__title">
+              <span class="mono">dhell@github: ~</span>
+              <span class="tag mono">zsh</span>
+            </div>
+            <span class="live mono">live</span>
+          </div>
+          <div class="term__body mono" id="termBody" aria-label="Terminal introducing Dhellmar"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT (part of Home) ===== -->
+    <section class="block about" id="about" aria-labelledby="aboutTitle">
+      <div class="about__grid">
+        <figure class="idcard reveal">
+          <div class="idcard__photo">
+            <img src="assets/photo-cut.webp" width="720" height="675" alt="Portrait of Dhellmar Feliciano Mahilum">
+            <span class="idcard__scan" aria-hidden="true"></span>
+            <span class="idcard__corner tl" aria-hidden="true"></span>
+            <span class="idcard__corner tr" aria-hidden="true"></span>
+            <span class="idcard__corner bl" aria-hidden="true"></span>
+            <span class="idcard__corner br" aria-hidden="true"></span>
+          </div>
+          <figcaption class="idcard__info">
+            <dl class="mono">
+              <dt>name</dt><dd>Dhellmar Feliciano Mahilum</dd>
+              <dt>handle</dt><dd>Dhellskieee</dd>
+              <dt>role</dt><dd>Computer Science Student</dd>
+              <dt>school</dt><dd>University of the Cordilleras</dd>
+              <dt>status</dt><dd class="is-ok">open to internships</dd>
+            </dl>
+          </figcaption>
+        </figure>
+
+        <div class="about__main">
+          <div class="about__intro reveal">
+            <h2 class="scramble" id="aboutTitle" data-text="A bit about me.">A bit about me.</h2>
+            <p>I'm a Computer Science student at the <strong>University of the Cordilleras</strong>. I make games for the browser, Android and PC using Unity and Blender, and I build websites and desktop software with JavaScript and Python. Most of what I know so far, I learned by shipping something and then fixing whatever broke.</p>
+          </div>
+
+          <div class="tracks">
+            <article class="track reveal">
+              <p class="track__verb">I <em>build.</em></p>
+              <p>Websites and web apps, written from scratch with no frameworks and no page builders. If it's on this site, I coded it.</p>
+              <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive layout</li><li>UI/UX design</li></ul>
+            </article>
+            <article class="track reveal">
+              <p class="track__verb">I <em>make games.</em></p>
+              <p>Browser games, plus Android and PC builds. I work on both the code and the art side.</p>
+              <ul class="chips"><li>Unity</li><li>Unreal Engine</li><li>Blender</li><li>Krita</li><li>Game dev</li></ul>
+            </article>
+            <article class="track reveal">
+              <p class="track__verb">I <em>write software.</em></p>
+              <p>Desktop tools and small web apps in Python, the side of development I'm aiming at long term.</p>
+              <ul class="chips"><li>Python</li><li>Qt</li><li>Flask</li><li>SQLite</li><li>VS Code</li></ul>
+            </article>
+          </div>
+        </div>
+
+        <aside class="about__side reveal" aria-label="Interests and tools">
+          <div class="side__group">
+            <p class="side__label mono">interests/</p>
+            <ul class="chips chips--line">
+              <li>Vibe coding</li><li>Programming</li><li>Ethical hacking</li><li>Cyber security</li><li>Game development</li>
+              <li>Web development</li><li>Software development</li><li>UI/UX design</li><li>System development</li><li>AI</li>
+            </ul>
+          </div>
+          <div class="side__group">
+            <p class="side__label mono">building with</p>
+            <ul class="chips chips--line">
+              <li>Python</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>SQLite</li><li>MySQL</li>
+              <li>Unity</li><li>Blender</li><li>Linux</li><li>Git</li><li>GitHub</li><li>VS Code</li>
+            </ul>
+          </div>
+          <div class="side__group">
+            <p class="side__label mono">learning next</p>
+            <ul class="chips chips--line">
+              <li>Java</li><li>C#</li><li>C++</li><li>React</li><li>PostgreSQL</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS: everything connects to GitHub ===== -->
+    <section class="block" id="projects" aria-labelledby="projectsTitle">
+      <div class="block__head reveal">
+        <h2 class="scramble" id="projectsTitle" data-text="Projects">Projects</h2>
+        <p class="block__sub">Everything I've built connects back to my GitHub. Hover a project to trace its link, drag the nodes around, and click one to open it.</p>
+        <p class="block__meta mono" id="projectCount">24 projects / 4 folders</p>
+      </div>
+
+      <div class="filters reveal" role="group" aria-label="Filter projects" id="filters">
+        <!-- buttons from script.js -->
+      </div>
+
+      <div class="window net reveal" id="net">
+        <div class="window__bar">
+          <div class="window__title">
+            <svg class="i-branch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2.2"></circle><circle cx="6" cy="19" r="2.2"></circle><circle cx="18" cy="8" r="2.2"></circle><path d="M6 7.2v9.6M18 10.2c0 4-4 4.2-9.8 6.4"></path></svg>
+            <span class="mono">github.com/Dhellss</span>
+            <span class="tag mono" id="repoTag">28 public repos</span>
+          </div>
+          <div class="window__right">
+            <div class="viewtoggle" role="group" aria-label="View">
+              <button class="viewtoggle__btn" type="button" data-view="map" aria-pressed="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"></circle><circle cx="18" cy="8" r="2"></circle><circle cx="9" cy="18" r="2"></circle><path d="M8 6.3l8 1.4M16.7 9.6L10.3 16.4M6.5 8l2 8"></path></svg>
+                Map
+              </button>
+              <button class="viewtoggle__btn" type="button" data-view="list" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="4" width="7" height="7" rx="1.5"></rect><rect x="3.5" y="13" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="13" width="7" height="7" rx="1.5"></rect></svg>
+                List
+              </button>
+            </div>
+            <span class="live mono">live</span>
+          </div>
+        </div>
+
+        <div class="net__body">
+          <div class="tools" role="toolbar" aria-label="Map tools">
+            <button class="tool" id="toolReset" type="button" aria-label="Reset layout" title="Reset layout">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="7.5"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 1.5v3.5M12 19v3.5M1.5 12H5M19 12h3.5"></path></svg>
+            </button>
+            <button class="tool" id="toolShake" type="button" aria-label="Shake the network" title="Shake the network">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2.5L5 13.5h6l-1 8 8-11h-6z"></path></svg>
+            </button>
+            <button class="tool" id="toolPause" type="button" aria-label="Pause packets" aria-pressed="false" title="Pause packets">
+              <svg class="i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5.5v13M15 5.5v13"></path></svg>
+              <svg class="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5l10 6.5-10 6.5z"></path></svg>
+            </button>
+          </div>
+
+          <div class="net__stage">
+            <div class="net__map" id="netMap">
+              <canvas class="net__canvas" id="netCanvas" aria-hidden="true"></canvas>
+              <!-- GitHub, folder at project nodes: ginagawa ng script.js -->
+            </div>
+            <div class="net__list" id="netList" hidden>
+              <!-- project cards: ginagawa ng script.js -->
+            </div>
+          </div>
+
+          <aside class="inspector" id="inspector" aria-label="Selected project" aria-live="polite">
+            <!-- laman: ginagawa ng script.js -->
+          </aside>
+        </div>
+
+        <div class="net__foot">
+          <div class="net__recent">
+            <p class="window__label mono">recent pushes</p>
+            <ul class="recent mono" id="recentPushes"></ul>
+          </div>
+          <ul class="legend mono" aria-label="Legend">
+            <li><i class="legend__dot is-push"></i>push to GitHub</li>
+            <li><i class="legend__dot is-deploy"></i>deploy to GitHub Pages</li>
+            <li><i class="legend__dot is-live"></i>playable live</li>
+          </ul>
+        </div>
+      </div>
+      <noscript><p class="block__sub">Turn on JavaScript to see the project map, or browse everything at github.com/Dhellss.</p></noscript>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="block contact" id="contact" aria-labelledby="contactTitle">
+      <div class="contact__grid">
+        <div class="contact__main">
+          <div class="reveal">
+            <h2 class="scramble" id="contactTitle" data-text="Let's talk.">Let's talk.</h2>
+            <p class="block__sub">Open to internships, collaborations and project ideas, or just feedback on something I built.</p>
+          </div>
+
+          <ul class="crows">
+            <li class="crow reveal">
+              <span class="crow__label mono">gmail</span>
+              <a class="crow__value" href="mailto:felicianomahilum@gmail.com">felicianomahilum@gmail.com</a>
+              <button class="copy" type="button" data-copy="felicianomahilum@gmail.com" aria-label="Copy email address">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"></path></svg>
+                <span>copy</span>
+              </button>
+            </li>
+            <li class="crow reveal">
+              <span class="crow__label mono">github</span>
+              <a class="crow__value" href="https://github.com/Dhellss" target="_blank" rel="noopener">github.com/Dhellss</a>
+              <button class="copy" type="button" data-copy="https://github.com/Dhellss" aria-label="Copy GitHub link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"></path></svg>
+                <span>copy</span>
+              </button>
+            </li>
+            <li class="crow reveal">
+              <span class="crow__label mono">linkedin</span>
+              <a class="crow__value" href="https://www.linkedin.com/in/dhellmar-mahilum-35402931a/" target="_blank" rel="noopener">linkedin.com/in/dhellmar-mahilum</a>
+              <button class="copy" type="button" data-copy="https://www.linkedin.com/in/dhellmar-mahilum-35402931a/" aria-label="Copy LinkedIn link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"></path></svg>
+                <span>copy</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="window hs reveal" id="handshake">
+          <div class="window__bar">
+            <div class="window__title">
+              <span class="mono">ping dhellmar</span>
+              <span class="tag mono">tcp handshake</span>
+            </div>
+            <button class="btn btn--ghost btn--sm" id="hsReplay" type="button">Ping again</button>
+          </div>
+          <div class="hs__stage" id="hsStage">
+            <canvas class="hs__canvas" id="hsCanvas" aria-hidden="true"></canvas>
+            <span class="hs__node hs__node--you mono" id="hsYou"><i class="sdot"></i>you</span>
+            <span class="hs__node hs__node--me mono" id="hsMe"><i class="sdot"></i>dhellmar</span>
+          </div>
+          <ol class="hs__log mono" id="hsLog" aria-label="Handshake log"></ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="foot">
+    <p class="foot__cmd mono">~/ dhellskieee : whoami</p>
+    <p class="sig" id="sig">I love the creation</p>
+    <p class="sig-ok mono" id="sigOk">[ok] identity confirmed</p>
+    <div class="foot__bar">
+      <p>© <span id="year">2026</span> Dhellmar Feliciano Mahilum</p>
+      <div class="foot__links">
+        <a href="https://github.com/Dhellss" target="_blank" rel="noopener">github</a>
+        <a href="https://www.linkedin.com/in/dhellmar-mahilum-35402931a/" target="_blank" rel="noopener">linkedin</a>
+        <a href="mailto:felicianomahilum@gmail.com">gmail</a>
+      </div>
+      <button class="totop mono" id="toTop" type="button">back to top</button>
+    </div>
+  </footer>
+
+  <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+  <div class="toast mono" id="toast" role="status" hidden></div>
+
+  <!-- JavaScript file (same folder). Nasa dulo para ready na ang HTML bago tumakbo. -->
+  <script src="script.js"></script>
+</body>
+</html>
